@@ -1,6 +1,16 @@
 # build-better-book-searching
 upgrading from a RESTful API structure to GraphQL
 
+below are my notes for this project:
+what to develop in the server:
+1. dont change the models, they can be used
+2. looking at the routes will help me determine the schemas
+3. none of the api routes are usable, that is what im replacing
+4. pieces of the controller code can be used but not the whole code in its entirity, (jeff said something liek because it is blending in calls the the database and response calls?)
+5. order of work for ther server side, define typedefs, then do resolvers,
+
+
+
 # 21 MERN: Book Search Engine
 
 ## Your Task
