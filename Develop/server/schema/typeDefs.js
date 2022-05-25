@@ -6,25 +6,35 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
+    bookCount: Int!
     savedBooks: [bookSchema]!
+  }
+
+  type Book {
+    bookId: String!
+    authors: [String!]
+    description: String!
+    title: String!
+    image: String
+    link: String
   }
 
   # Set up an Auth type to handle returning data from a user being created or user login
   type Auth {
     token: ID!
-    user: user
+    user: User
   }
 
   type Query {
-    user(username: String!): User
+    me: User
   }
 
   type Mutation {
-    createUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
     saveBook(username: String!, savedBook: bookSchema!): User
-    deleteBook(username: String!, savedBook: bookSchema!): User
+    removeBook(username: String!, savedBook: bookSchema!): User
   }
 `;
 
