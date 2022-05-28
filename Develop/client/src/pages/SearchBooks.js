@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
+import { useMutation } from '@apollo/client';
+import { SAVE_BOOK } from '../utils/mutations';
+
 import Auth from '../utils/auth';
 import { saveBook, searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
@@ -19,6 +22,14 @@ const SearchBooks = () => {
   useEffect(() => {
     return () => saveBookIds(savedBookIds);
   });
+
+
+  // previously defined above is the given code...
+  // this line is added for new gql code
+  const [saveBook, { error, data }, context] = useMutation(SAVE_BOOK);
+  // also might need this
+  let { id } = useParams();
+
 
   // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -65,11 +76,16 @@ const SearchBooks = () => {
     }
 
     try {
-      const response = await saveBook(bookToSave, token);
+      //comented out older api code, adding gql below
+      // const response = await saveBook(bookToSave, token);
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      // added this gql code using mini project as an example
+      await saveBook({
+        variables: { _id: id, savedBooks: bookId}
+      })
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
