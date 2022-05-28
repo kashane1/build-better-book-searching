@@ -10,6 +10,10 @@ what to develop in the server:
 5. order of work for ther server side, define typedefs, then do resolvers,
 
 
+friday, 11pm, 5/27/22, got it pretty close to finished 
+cant login though. might want to try seeding data for users?
+
+
 
 # 21 MERN: Book Search Engine
 

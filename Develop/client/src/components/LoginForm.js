@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
+import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
 // import { loginUser } from '../utils/API';
@@ -33,7 +34,7 @@ const LoginForm = () => {
     // adding the new gql mutation functionality
     try {
       const { data } = await loginUser({
-        variables: { ...formState },
+        variables: { ...userFormData },
       });
 
       Auth.login(data.login.token);

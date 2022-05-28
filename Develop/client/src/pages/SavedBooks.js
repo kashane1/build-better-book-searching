@@ -9,7 +9,7 @@ import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 import { GET_ME } from '../utils/queries';
-import { REMOVE_BOOK } from '../../utils/mutations';
+import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
   // building my gql GET_ME query
@@ -28,7 +28,7 @@ const SavedBooks = () => {
     update(cache, { data: { removeBook } }) {
       try {
         cache.writeQuery({
-          query: QUERY_ME,
+          query: GET_ME,
           data: { me: removeBook },
         });
       } catch (e) {
@@ -59,7 +59,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (!userData) {
     return <h2>LOADING...</h2>;
   }
 
