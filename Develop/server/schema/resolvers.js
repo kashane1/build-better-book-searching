@@ -2,6 +2,9 @@ const { User, Book } = require('../models');
 
 const resolvers = {
   Query: {
+    users: async () => {
+      return User.find().populate('savedBooks');
+    },
     // the context here can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
