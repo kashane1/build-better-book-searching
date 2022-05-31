@@ -10,11 +10,11 @@ const typeDefs = gql`
     savedBooks: [String]
   }
 
-  type Book {
-    bookId: String!
-    authors: [String!]
-    description: String!
-    title: String!
+  input bookInput {
+    bookId: String
+    authors: [String]
+    description: String
+    title: String
     image: String
     link: String
   }
@@ -34,9 +34,12 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    saveBook(username: String!, savedBook: String!): User
-    removeBook(username: String!, savedBook: String!): User
+    saveBook(userId: ID!, input: bookInput!): User
+    removeBook(userId: ID!, savedBook: String!): User
   }
 `;
+
+// my old saveBook mutation:
+// saveBook(userId: ID!, savedBook: String!): User
 
 module.exports = typeDefs;

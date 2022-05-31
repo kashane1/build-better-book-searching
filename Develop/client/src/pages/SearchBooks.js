@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
 
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchBooks = () => {
@@ -26,7 +26,7 @@ const SearchBooks = () => {
   });
 
 
-  // previously defined above is the given code...
+  // previously defined above was the given code...
   // this line is added for new gql code
   const [saveBook, { error, data }, context] = useMutation(SAVE_BOOK);
   // also might need this
@@ -85,9 +85,10 @@ const SearchBooks = () => {
       // }
 
       // added this gql code using mini project as an example
-      await saveBook({
-        variables: { _id: id, savedBooks: bookId}
+      const data = await saveBook({
+        variables: { id, bookToSave}
       })
+      console.log(data);
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);

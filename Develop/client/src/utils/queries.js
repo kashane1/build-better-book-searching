@@ -6,6 +6,20 @@ export const GET_ME = gql`
       _id
       username
       savedBooks
+      bookcount
     }
   }
 `;
+
+export const GET_USERS = gql`
+  query user {
+    users {
+      _id
+      username
+      email
+      savedBooks
+      bookcount
+    }
+  }
+`;
+

@@ -14,7 +14,7 @@ const LoginForm = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   // i added this to define loginUser from my gql
-  const [loginUser, { error, data }] = useMutation(LOGIN_USER);
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -33,7 +33,7 @@ const LoginForm = () => {
 
     // adding the new gql mutation functionality
     try {
-      const { data } = await loginUser({
+      const { data } = await login({
         variables: { ...userFormData },
       });
 
@@ -44,7 +44,6 @@ const LoginForm = () => {
 
     // clear form values
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
